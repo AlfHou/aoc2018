@@ -1,5 +1,5 @@
 day2: day2.c
-	gcc day1.c -o day1
+	gcc day2.c -o day2
 
 clean:
 	rm -f day2
