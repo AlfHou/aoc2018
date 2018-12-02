@@ -50,6 +50,7 @@ void countChars(int *numberOfThreeChars, int *numberOfTwoChars, char line[]) {
 }
 
 int findChecksum(FILE *file) {
+    printf("Calculating checksum...\n");
     int numberOfThreeChars = 0;
     int numberOfTwoChars = 0;
 
@@ -61,12 +62,10 @@ int findChecksum(FILE *file) {
 }
 
 int main(void) {
-    printf("Calculating checksum...\n");
     FILE *file;
     file = fopen("./input.txt", "r");
 
     int checksum = findChecksum(file);
-
     printf("Checksum: %d\n", checksum);
 
     fclose(file);
