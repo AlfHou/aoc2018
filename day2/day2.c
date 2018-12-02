@@ -12,47 +12,50 @@ bool existsIn(char c, char array[]) {
     }
     return false;
 }
-int findChecksum(FILE *file) {
+void countChars(int *numberOfThreeChars, int *numberOfTwoChars, char line[]) {
+    bool threeChar = false;
+    bool twoChar = false;
 
+    int strLength = strlen(line);
+
+    char alreadyCounted[strLength];
+    int alreadyCountedCounter = 0;
+    
+    int i;
+    for (i = 0; i < strLength - 1; i++) {
+        if (!existsIn(line[i], alreadyCounted)) {
+            int count = 0;
+            int j;
+            for (j = 0; j < strLength - 1; j++) {
+                if (line[i] == line[j]) {
+                    count++;
+                }
+            }
+            if (count == 3) {
+                threeChar = true;
+            } else if (count == 2) {
+                twoChar = true;
+            }
+            alreadyCounted[alreadyCountedCounter] = line[i];
+            alreadyCountedCounter++;
+        }
+    }
+
+    if (threeChar) {
+        *numberOfThreeChars += 1;
+    }
+    if (twoChar) {
+        *numberOfTwoChars += 1;
+    }
+}
+
+int findChecksum(FILE *file) {
     int numberOfThreeChars = 0;
     int numberOfTwoChars = 0;
 
     char line[40];
     while (fgets(line, 41, file)) {
-        int strLength = strlen(line);
-
-        bool threeChar = false;
-        bool twoChar = false;
-
-        char alreadyCounted[strLength];
-        int alreadyCountedCounter = 0;
-        
-        int i;
-        for (i = 0; i < strLength - 1; i++) {
-            if (!existsIn(line[i], alreadyCounted)) {
-                int count = 0;
-                int j;
-                for (j = 0; j < strLength - 1; j++) {
-                    if (line[i] == line[j]) {
-                        count++;
-                    }
-                }
-                if (count == 3) {
-                    threeChar = true;
-                } else if (count == 2) {
-                    twoChar = true;
-                }
-                alreadyCounted[alreadyCountedCounter] = line[i];
-                alreadyCountedCounter++;
-            }
-        }
-
-        if (threeChar) {
-            numberOfThreeChars++;
-        }
-        if (twoChar) {
-            numberOfTwoChars++;
-        }
+        countChars(&numberOfThreeChars, &numberOfTwoChars, line);
     }
     return numberOfThreeChars * numberOfTwoChars;
 }
