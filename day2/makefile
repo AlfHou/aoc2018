@@ -1,5 +1,9 @@
-day2: day2.c
-	gcc day2.c -o day2
+CC = gcc
+CFLAGS = -Wall -Wextra -Wpedantic
+
+
+%:%.c
+	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
 	rm -f day2

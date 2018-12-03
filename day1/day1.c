@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+
 int findFrequency(void);
 int findRepeatedFrequency(void);
 int countLines(FILE *f);

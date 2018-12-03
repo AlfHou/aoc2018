@@ -6,4 +6,4 @@ CFLAGS = -Wall -Wextra -Wpedantic
 	$(CC) $(CFLAGS) $^ -o $@
 
 clean:
-	rm -f day1
+	rm -f day3
