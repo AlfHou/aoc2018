@@ -10,14 +10,10 @@ int main(void) {
     //deklarert til å inneholde char
     char line[256];
     while (fgets(line, sizeof(line), file)) {
-        char *id;
         //Lager en char peker som peker til adressen
         //starten av line
         char *linePointer = line;
-        //Her sender jeg inn en peker til den pekeren som
-        //peker på første element i arrayen 'line'
-        //Den returnerer en peker til 
-        id = strsep(&linePointer, " ,x");
+        strsep(&linePointer, " ,x");
         strsep(&linePointer, " ,x");
         char *xCoordinate = strsep(&linePointer, " ,x:");
         char *yCoordinate = strsep(&linePointer, " ,:x");
@@ -26,6 +22,14 @@ int main(void) {
         strsep(&linePointer, ": ,:x");
         char *width = strsep(&linePointer, " ,:x");
         char *height = strsep(&linePointer, " ,:x");
+        
+
+        //endre elementet fra fabric[yCoordinate][xCoordinate] 
+        //til og med fabric[yCoordinate + height][xCoordinate + widht]
+        //til C (for counted) hvis elementet som allerede er der
+        // == T eller til T (for taken) hvis ingenting er der fra før
+
+        //Gå gjennom fabric og tell antall ganger den finner C
         
         
 
