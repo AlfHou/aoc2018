@@ -6,6 +6,11 @@ static int compare (const void * a, const void * b) {
     return strcmp (a, b);
 }
 
+struct guardSleep {
+    int id;
+    int sleep;
+};
+
 int main(void) {
     FILE *file;
     file = fopen("./input.txt", "r");
@@ -24,6 +29,8 @@ int main(void) {
         counter++;
     }
     qsort(entries, sizeof(entries)/sizeof(entries[0]), sizeof(entries[0]), compare);
+
+    struct guardSleep sleepTable[lineCounter];
     
     
     fclose(file);
