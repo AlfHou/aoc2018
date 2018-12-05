@@ -2,6 +2,10 @@
 #include <stdlib.h>
 #include <string.h>
 
+static int compare (const void * a, const void * b) {
+    return strcmp (a, b);
+}
+
 int main(void) {
     FILE *file;
     file = fopen("./input.txt", "r");
@@ -19,6 +23,8 @@ int main(void) {
         strcpy(entries[counter], line);
         counter++;
     }
+    qsort(entries, sizeof(entries)/sizeof(entries[0]), sizeof(entries[0]), compare);
+    
     
     fclose(file);
     exit(EXIT_SUCCESS);
